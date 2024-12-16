@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="des_game.css">
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div id="g_box">
+        <span onclick="verify(0)"></span>
+        <span onclick="verify(1)"></span>
+        <span onclick="verify(2)"></span>
+        <span onclick="verify(3)"></span>
+        <span onclick="verify(4)"></span>
+        <span onclick="verify(5)"></span>
+        <span onclick="verify(6)"></span>
+        <span onclick="verify(7)"></span>
+        <span onclick="verify(8)"></span>
+    </div>
+
+    <p id="turn">Turn : X</p>
+    <button onclick="start_game()" id="start">Start</button>
+
+    <script>
+        var P=0;
+
+        var el = document.getElementById("g_box");
+        el.style.display="none";
+
+        var boxes=document.getElementById("g_box").getElementsByTagName("span");
+        var CNT=0;
+
+        var butt = document.getElementById("start");
+        var turn = document.getElementById("turn");
+
+        function start_game(){
+            butt.style.display="none";
+            el.style.display="flex";
+            turn.style.display="block";
+        }
+
+        function reset_game(){
+            for(var i=0;i<boxes.length;i++) boxes[i].innerHTML="";
+
+            turn.innerHTML = "Turn : X";
+                butt.style.display="block";
+                el.style.display="none";
+                turn.style.display="none";
+                CNT=0;
+        }
+        function won_game(player){
+            var val;
+            if(P==1) val=1;
+            else val=2;
+            alert("Player"+val+ " WON THE GAME !");
+
+            reset_game();
+        }
+        function verify(n){
+            //alert(boxes[n].innerHTML);
+            if(boxes[n].innerHTML != ""){
+                alert("Fill the EMPTY boxes only.");
+                return;
+            }
+
+            if(P==0){
+                boxes[n].innerHTML = 'X';
+                turn.innerHTML = "Turn : O";
+            }
+            else{
+                boxes[n].innerHTML = 'O';
+                turn.innerHTML = "Turn : X";
+            }
+            P^=1;
+            CNT++;
+
+            if(n==0){
+                if(boxes[0].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[0].innerHTML == boxes[1].innerHTML && boxes[1].innerHTML==boxes[2].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[0].innerHTML == boxes[3].innerHTML && boxes[3].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+            }
+            else if(n==1){
+                if(boxes[0].innerHTML == boxes[1].innerHTML && boxes[1].innerHTML==boxes[2].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[1].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[7].innerHTML){
+                    won_game(P);
+                    return;
+                }
+               
+            }
+            else if(n==2){
+                if(boxes[0].innerHTML == boxes[1].innerHTML && boxes[1].innerHTML==boxes[2].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[2].innerHTML == boxes[5].innerHTML && boxes[5].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[2].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+            }
+            else if(n==3){
+                if(boxes[0].innerHTML == boxes[3].innerHTML && boxes[3].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[3].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[5].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                
+            }
+            else if(n==4){
+                if(boxes[0].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[1].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[7].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[2].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[3].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[5].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                
+            }
+            else if(n==5){
+                if(boxes[2].innerHTML == boxes[5].innerHTML && boxes[5].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[3].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[5].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                
+            }
+            else if(n==6){
+                if(boxes[0].innerHTML == boxes[3].innerHTML && boxes[3].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[2].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[6].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[6].innerHTML == boxes[7].innerHTML && boxes[7].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+            }
+            else if(n==7){
+                if(boxes[1].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[7].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[6].innerHTML == boxes[7].innerHTML && boxes[7].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                
+            }
+            else{
+                if(boxes[2].innerHTML == boxes[5].innerHTML && boxes[5].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[6].innerHTML == boxes[7].innerHTML && boxes[7].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+                if(boxes[0].innerHTML == boxes[4].innerHTML && boxes[4].innerHTML==boxes[8].innerHTML){
+                    won_game(P);
+                    return;
+                }
+            }
+
+            if(CNT == 9){
+                alert("DRAW MATCH..!!!");
+                reset_game();
+            }
+
+        }
+        
+    </script>
+</body>
+</html>
